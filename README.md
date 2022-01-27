@@ -1,4 +1,4 @@
-# VenomMonkey [![NPM version](https://badge.fury.io/js/VenomMonkey.svg)](https://npmjs.org/package/VenomMonkey) [![Build Status](https://travis-ci.org/EvilBit-Labs/VenomMonkey.svg?branch=master)](https://travis-ci.org/EvilBit-Labs/VenomMonkey)
+# VenomMonkey
 
 > A distributed multiplatform beacon to emulate threat actor capabilities
 

@@ -179,3 +179,5 @@ Cargo.lock
 # Support for Project snippet scope
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,clion+all,rust,cmake
+
+server/ssl
