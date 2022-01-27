@@ -1,0 +1,20 @@
+[package]
+name = "client"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+common = { path = "../common" }
+
+clap = "2.33"
+anyhow = "1.0"
+thiserror = "1.0"
+base64 = "0.13"
+reqwest = { version = "0.11", default-features = false, features = [
+    "json",
+    "rustls-tls",
+    "blocking",
+] }
+uuid = { version = "0.8", features = ["serde", "v4"] }
+prettytable-rs = "0.8"
