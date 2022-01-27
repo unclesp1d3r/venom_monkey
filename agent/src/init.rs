@@ -62,7 +62,7 @@ pub fn save_agent_id(agent_id: Uuid) -> Result<(), Error> {
 fn get_agent_id_file_path() -> Result<PathBuf, Error> {
     let mut cache_dir = match dirs::cache_dir() {
         Some(cache_dir) => cache_dir,
-        None => return Err(Error::Internal("Error getting home directory".to_string())),
+        None => return Err(Error::Internal("Error getting cache directory".to_string())),
     };
 
     cache_dir.push(consts::AGENT_ID_FILE);
