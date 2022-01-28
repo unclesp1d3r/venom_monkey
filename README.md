@@ -10,6 +10,8 @@ $ make
 
 ## TODO
 
+- [ ] Fix breaking changes in crypto crates in the client and agent side.
+- [ ] Fix issue with outdate clap in the client.
 - [ ] Implement user management for clients.
 - [ ] Add support for consistent agent IDs using machine IDs.
 - [ ] Add support for the agents sending their host names and machine IDs on registration.
