@@ -22,7 +22,7 @@ impl Service {
         &self,
         input: api::RegisterAgent,
     ) -> Result<api::AgentRegistered, Error> {
-        let id = Uuid::new_v4();
+        let id = Uuid::new_v5(&Uuid::NAMESPACE_OID, input.machine_id.as_bytes());
         let created_at = Utc::now();
 
         // verify input
@@ -49,6 +49,7 @@ impl Service {
 
         let agent = Agent {
             id,
+            machine_id: input.machine_id,
             created_at,
             last_seen_at: created_at,
             identity_public_key: input.identity_public_key.to_vec(),

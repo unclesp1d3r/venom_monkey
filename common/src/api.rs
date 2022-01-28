@@ -39,6 +39,7 @@ pub struct Error {
 pub struct RegisterAgent {
     pub identity_public_key: [u8; crypto::ED25519_PUBLIC_KEY_SIZE],
     pub public_prekey: [u8; crypto::X25519_PUBLIC_KEY_SIZE],
+    pub machine_id: String,
     // we use Vec<u8> to avoid serde ownership errors
     pub public_prekey_signature: Vec<u8>,
 }
@@ -105,6 +106,7 @@ pub struct AgentJob {
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Agent {
     pub id: Uuid,
+    pub machine_id: String,
     pub created_at: DateTime<Utc>,
     pub last_seen_at: DateTime<Utc>,
     pub identity_public_key: [u8; crypto::ED25519_PUBLIC_KEY_SIZE],

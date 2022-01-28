@@ -21,9 +21,14 @@ blake2 = "0.9"
 zeroize = "1.3"
 single-instance = "0.3"
 load-dotenv = "0.1"
+machine-uid = "0.2"
+cfg-iif = "0.2.2"
 
 #[cfg(debug_assertions)]
 simplelog = "0.11"
 
 [target.'cfg(windows)'.dependencies]
 winreg = "0.10"
+
+[target.'cfg(unix)'.dependencies]
+daemonize = "0.4"

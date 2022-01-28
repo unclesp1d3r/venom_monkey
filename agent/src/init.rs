@@ -26,6 +26,7 @@ pub fn init(api_client: &ureq::Agent) -> Result<config::Config, Error> {
 
 pub fn register(api_client: &ureq::Agent) -> Result<config::Config, Error> {
     let register_agent_route = format!("{}/api/agents", config::SERVER_URL);
+    let machine_id: String = machine_uid::get().unwrap();
     let mut rand_generator = rand::rngs::OsRng {};
 
     let identity_keypair = ed25519_dalek::Keypair::generate(&mut rand_generator);
@@ -40,6 +41,7 @@ pub fn register(api_client: &ureq::Agent) -> Result<config::Config, Error> {
         identity_public_key: identity_keypair.public.to_bytes(),
         public_prekey: public_prekey.clone(),
         public_prekey_signature: public_prekey_signature.to_bytes().to_vec(),
+        machine_id,
     };
 
     let api_res: api::Response<api::AgentRegistered> = api_client

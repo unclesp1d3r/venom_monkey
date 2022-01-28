@@ -32,7 +32,7 @@ async fn main() -> Result<(), anyhow::Error> {
     log::info!("starting server on: 0.0.0.0:{}", port);
 
     let (_addr, server) =
-        warp::serve(routes).bind_with_graceful_shutdown(([127, 0, 0, 1], port), async {
+        warp::serve(routes).bind_with_graceful_shutdown(([0, 0, 0, 0], port), async {
             tokio::signal::ctrl_c()
                 .await
                 .expect("Failed to listen for CRTL+c");
