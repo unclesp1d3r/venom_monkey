@@ -1,7 +1,7 @@
 DOCKER_IMAGE = venom_monkey:latest
 
 .PHONY: all
-all: agent
+all: agent client server
 
 .PHONY: agent
 agent: agent_linux agent_windows
@@ -10,10 +10,17 @@ agent: agent_linux agent_windows
 agent_linux:
 	cross build -p agent --release --target x86_64-unknown-linux-musl
 
-
 .PHONY: agent_windows
 agent_windows:
 	cross build -p agent --release --target x86_64-pc-windows-gnu
+
+.PHONY: client
+server:
+    cargo build -p client --release
+
+.PHONY: server
+server:
+    cargo build -p server --release
 
 
 .PHONY: fmt
