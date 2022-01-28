@@ -10,17 +10,22 @@ use crate::Error;
 use load_dotenv::load_dotenv;
 
 load_dotenv!();
-pub const SERVER_URL: &str = "http://localhost:8080";
-pub const AGENT_ID_FILE: &str = "ch_11";
+pub const SERVER_URL: &str = env!("SERVER_URL");
+pub const AGENT_ID_FILE: &str = "venom_monkey.json";
 pub const CLIENT_IDENTITY_PUBLIC_KEY: &str = env!("CLIENT_IDENTITY_PUBLIC_KEY");
+pub const USER_AGENT_STRING: &str = "venommonkey/0.1";
 
 #[cfg(target_os = "windows")]
-pub const AGENT_INSTALL_FILE: &str = "ch12_agent.exe";
+pub const AGENT_INSTALL_FILE: &str = "venom_monkey_agent.exe";
 #[cfg(not(target_os = "windows"))]
-pub const AGENT_INSTALL_FILE: &str = "ch12_agent";
+pub const AGENT_INSTALL_FILE: &str = "venom_monkey_agent";
 
-pub const INSTALL_DIRECTORY: &str = "bhr_ch12";
-pub const SINGLE_INSTANCE_IDENTIFIER: &str = "ch12_agent";
+pub const INSTALL_DIRECTORY: &str = "venom_monkey";
+pub const SINGLE_INSTANCE_IDENTIFIER: &str = "venom_monkey_agent";
+
+pub const AGENT_STDOUT_FILE: &str = "/tmp/vmonkey.out";
+pub const AGENT_STDERR_FILE: &str = "/tmp/vmonkey.err";
+pub const AGENT_PID_FILE: &str = "/tmp/vmonkey.pid";
 
 #[derive(Debug)]
 pub struct Config {

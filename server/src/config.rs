@@ -12,6 +12,7 @@ pub struct Config {
 const ENV_DATABASE_URL: &str = "DATABASE_URL";
 const ENV_PORT: &str = "PORT";
 const ENV_CLIENT_IDENTITY_PUBLIC_KEY: &str = env!("CLIENT_IDENTITY_PUBLIC_KEY");
+pub const MAX_RESPONSE_SIZE: u64 = 1024 * 128;
 
 const DEFAULT_PORT: u16 = 8080;
 
