@@ -15,6 +15,8 @@ $ make
 - [ ] Implement user management for clients.
 - [ ] Add support for consistent agent IDs using machine IDs.
 - [ ] Add support for the agents sending their host names and machine IDs on registration.
+- [ ] Change the agent behavior to perform beacons and not just long-polling.
+- [ ] Add a command to buggout the agent.
 
 ## License
 
