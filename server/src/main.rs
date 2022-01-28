@@ -15,26 +15,28 @@ pub use service::Service;
 
 #[tokio::main(flavor = "multi_thread")]
 async fn main() -> Result<(), anyhow::Error> {
-    std::env::set_var("RUST_LOG", "server=info");
+    std::env::set_var("RUST_LOG", "server=debug");
     env_logger::init();
 
     let config = Config::load()?;
 
     let db_pool = db::connect(&config.database_url).await?;
     db::migrate(&db_pool).await?;
-    let service = Service::new(db_pool);
+
+    let port = config.port;
+    let service = Service::new(db_pool, config);
     let app_state = Arc::new(api::AppState::new(service));
 
     let routes = api::routes::routes(app_state);
 
-    log::info!("starting server on 0.0.0.0:{}", config.port);
+    log::info!("starting server on: 0.0.0.0:{}", port);
 
     let (_addr, server) =
-        warp::serve(routes).bind_with_graceful_shutdown(([127, 0, 0, 1], config.port), async {
+        warp::serve(routes).bind_with_graceful_shutdown(([127, 0, 0, 1], port), async {
             tokio::signal::ctrl_c()
                 .await
                 .expect("Failed to listen for CRTL+c");
-            log::info!("Shutting down server.");
+            log::info!("Shutting down server");
         });
 
     server.await;

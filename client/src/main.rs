@@ -7,12 +7,14 @@ mod error;
 
 pub use error::Error;
 
+use crate::config::Config;
+
 fn main() -> Result<(), anyhow::Error> {
     let cli = App::new(clap::crate_name!())
         .version(clap::crate_version!())
         .about(clap::crate_description!())
         .subcommand(SubCommand::with_name(cli::AGENTS).about("List all agents"))
-        .subcommand(SubCommand::with_name(cli::JOBS).about("List all jobs"))
+        .subcommand(SubCommand::with_name(cli::IDENTITY).about("Generates a new identity keypair"))
         .subcommand(
             SubCommand::with_name(cli::EXEC)
                 .about("Execute a command")
@@ -39,13 +41,14 @@ fn main() -> Result<(), anyhow::Error> {
 
     if let Some(_) = cli.subcommand_matches(cli::AGENTS) {
         cli::agents::run(&api_client)?;
-    } else if let Some(_) = cli.subcommand_matches(cli::JOBS) {
-        cli::jobs::run(&api_client)?;
+    } else if let Some(_) = cli.subcommand_matches(cli::IDENTITY) {
+        cli::identity::run();
     } else if let Some(matches) = cli.subcommand_matches(cli::EXEC) {
         // we can sfaely unwrap as the arguments are required
         let agent_id = matches.value_of("agent").unwrap();
         let command = matches.value_of("command").unwrap();
-        cli::exec::run(&api_client, agent_id, command)?;
+        let conf = Config::load()?;
+        cli::exec::run(&api_client, agent_id, command, conf)?;
     }
 
     Ok(())
