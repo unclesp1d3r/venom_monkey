@@ -1,5 +1,7 @@
 use crate::Error;
+use load_dotenv::load_dotenv;
 
+load_dotenv!();
 #[derive(Clone, Debug)]
 pub struct Config {
     pub port: u16,
@@ -9,7 +11,7 @@ pub struct Config {
 
 const ENV_DATABASE_URL: &str = "DATABASE_URL";
 const ENV_PORT: &str = "PORT";
-const ENV_CLIENT_IDENTITY_PUBLIC_KEY: &str = "CLIENT_IDENTITY_PUBLIC_KEY";
+const ENV_CLIENT_IDENTITY_PUBLIC_KEY: &str = env!("CLIENT_IDENTITY_PUBLIC_KEY");
 
 const DEFAULT_PORT: u16 = 8080;
 
@@ -24,9 +26,7 @@ impl Config {
         let database_url =
             std::env::var(ENV_DATABASE_URL).map_err(|_| env_not_found(ENV_DATABASE_URL))?;
 
-        let client_identity_key_str = std::env::var(ENV_CLIENT_IDENTITY_PUBLIC_KEY)
-            .ok()
-            .unwrap_or(String::new());
+        let client_identity_key_str = ENV_CLIENT_IDENTITY_PUBLIC_KEY;
         let client_identity_public_key_bytes = base64::decode(&client_identity_key_str)
             .map_err(|err| Error::Internal(err.to_string()))?;
 

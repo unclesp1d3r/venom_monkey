@@ -21,10 +21,12 @@ dependencies = [
  "common",
  "dirs 4.0.0",
  "ed25519-dalek",
+ "load-dotenv",
  "log",
  "rand 0.7.3",
  "serde",
  "serde_json",
+ "simplelog",
  "ureq",
  "uuid",
  "x25519-dalek",
@@ -275,6 +277,7 @@ dependencies = [
  "clap",
  "common",
  "ed25519-dalek",
+ "load-dotenv",
  "prettytable-rs",
  "rand 0.7.3",
  "reqwest",
@@ -921,6 +924,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7b2f96d100e1cf1929e7719b7edb3b90ab5298072638fccd77be9ce942ecdfce"
 
 [[package]]
+name = "load-dotenv"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "71abcf6d8da2a6c163554a61cdbca2438bbe9e687a9c5ebeee12e9af42864b54"
+dependencies = [
+ "dotenv",
+]
+
+[[package]]
 name = "lock_api"
 version = "0.4.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1512,6 +1524,7 @@ dependencies = [
  "dotenv",
  "ed25519-dalek",
  "env_logger",
+ "load-dotenv",
  "log",
  "serde",
  "sqlx",
@@ -1567,6 +1580,17 @@ name = "signature"
 version = "1.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c19772be3c4dd2ceaacf03cb41d5885f2a02c4d8804884918e3a258480803335"
+
+[[package]]
+name = "simplelog"
+version = "0.11.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c1348164456f72ca0116e4538bdaabb0ddb622c7d9f16387c725af3e96d6001c"
+dependencies = [
+ "chrono",
+ "log",
+ "termcolor",
+]
 
 [[package]]
 name = "slab"

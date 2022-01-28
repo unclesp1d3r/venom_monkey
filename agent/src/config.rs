@@ -4,10 +4,12 @@ use uuid::Uuid;
 use x25519_dalek::{x25519, X25519_BASEPOINT_BYTES};
 
 use crate::Error;
+use load_dotenv::load_dotenv;
 
+load_dotenv!();
 pub const SERVER_URL: &str = "http://localhost:8080";
 pub const AGENT_ID_FILE: &str = "ch_11";
-pub const CLIENT_IDENTITY_PUBLIC_KEY: &str = "cUCf3F+p7I0o2PqxmtO209wkiHPFWjwUPFr9H/jpmDU=";
+pub const CLIENT_IDENTITY_PUBLIC_KEY: &str = env!("CLIENT_IDENTITY_PUBLIC_KEY");
 
 #[derive(Debug)]
 pub struct Config {
