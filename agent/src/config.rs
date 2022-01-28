@@ -14,11 +14,11 @@ pub const SERVER_URL: &str = "http://localhost:8080";
 pub const AGENT_ID_FILE: &str = "ch_11";
 pub const CLIENT_IDENTITY_PUBLIC_KEY: &str = env!("CLIENT_IDENTITY_PUBLIC_KEY");
 
-pub const AGENT_CONFIG_FILE: &str = "ch12_config.json";
 #[cfg(target_os = "windows")]
 pub const AGENT_INSTALL_FILE: &str = "ch12_agent.exe";
 #[cfg(not(target_os = "windows"))]
 pub const AGENT_INSTALL_FILE: &str = "ch12_agent";
+
 pub const INSTALL_DIRECTORY: &str = "bhr_ch12";
 pub const SINGLE_INSTANCE_IDENTIFIER: &str = "ch12_agent";
 
