@@ -8,7 +8,11 @@
 $ make
 ```
 
-## Usage
+## TODO
+
+- [ ] Implement user management for clients.
+- [ ] Add support for consistent agent IDs using machine IDs.
+- [ ] Add support for the agents sending their host names and machine IDs on registration.
 
 ## License
 
