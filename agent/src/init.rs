@@ -94,12 +94,16 @@ pub fn get_saved_agent_config() -> Result<Option<config::Config>, Error> {
 }
 
 pub fn get_agent_config_file_path() -> Result<PathBuf, Error> {
-    let mut home_dir = match dirs::home_dir() {
-        Some(home_dir) => home_dir,
-        None => return Err(Error::Internal("Error getting home directory.".to_string())),
+    let mut cache_dir = match dirs::cache_dir() {
+        Some(cache_dir) => cache_dir,
+        None => {
+            return Err(Error::Internal(
+                "Error getting cache directory.".to_string(),
+            ))
+        }
     };
 
-    home_dir.push(config::AGENT_ID_FILE);
+    cache_dir.push(config::AGENT_ID_FILE);
 
-    Ok(home_dir)
+    Ok(cache_dir)
 }
