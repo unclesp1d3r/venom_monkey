@@ -5,8 +5,7 @@ use common::{
 };
 use ed25519_dalek::Signer;
 use rand::RngCore;
-use std::path::PathBuf;
-use std::{convert::TryInto, fs};
+use std::{convert::TryInto, fs, path::PathBuf};
 use x25519_dalek::{x25519, X25519_BASEPOINT_BYTES};
 
 pub fn init(api_client: &ureq::Agent) -> Result<config::Config, Error> {
@@ -27,6 +26,15 @@ pub fn init(api_client: &ureq::Agent) -> Result<config::Config, Error> {
 pub fn register(api_client: &ureq::Agent) -> Result<config::Config, Error> {
     let register_agent_route = format!("{}/api/agents", config::SERVER_URL);
     let machine_id: String = machine_uid::get().unwrap();
+    let host_name: String = if let Ok(host_name) = hostname::get() {
+        if let Some(host_name) = host_name.to_str() {
+            host_name.to_owned()
+        } else {
+            String::from("UNKNOWN")
+        }
+    } else {
+        String::from("UNKNOWN")
+    };
     let mut rand_generator = rand::rngs::OsRng {};
 
     let identity_keypair = ed25519_dalek::Keypair::generate(&mut rand_generator);
@@ -42,6 +50,7 @@ pub fn register(api_client: &ureq::Agent) -> Result<config::Config, Error> {
         public_prekey: public_prekey.clone(),
         public_prekey_signature: public_prekey_signature.to_bytes().to_vec(),
         machine_id,
+        host_name,
     };
 
     let api_res: api::Response<api::AgentRegistered> = api_client

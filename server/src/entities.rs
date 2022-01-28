@@ -50,6 +50,7 @@ impl Into<api::Job> for Job {
 pub struct Agent {
     pub id: Uuid,
     pub machine_id: String,
+    pub host_name: String,
     pub created_at: DateTime<Utc>,
     pub last_seen_at: DateTime<Utc>,
     pub identity_public_key: Vec<u8>,
@@ -62,6 +63,7 @@ impl Into<api::Agent> for Agent {
         api::Agent {
             id: self.id,
             machine_id: self.machine_id,
+            host_name: self.host_name,
             created_at: self.created_at,
             last_seen_at: self.last_seen_at,
             identity_public_key: self

@@ -7,12 +7,13 @@ use uuid::Uuid;
 impl Repository {
     pub async fn create_agent(&self, db: &Pool<Postgres>, agent: &Agent) -> Result<(), Error> {
         const QUERY: &str = "INSERT INTO agents
-            (id, machine_id, created_at, last_seen_at, identity_public_key, public_prekey, public_prekey_signature)
-            VALUES ($1, $2, $3, $4, $5, $6, $7)";
+            (id, machine_id, host_name, created_at, last_seen_at, identity_public_key, public_prekey, public_prekey_signature)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
 
         match sqlx::query(QUERY)
             .bind(agent.id)
             .bind(&agent.machine_id)
+            .bind(&agent.host_name)
             .bind(agent.created_at)
             .bind(agent.last_seen_at)
             .bind(&agent.identity_public_key)

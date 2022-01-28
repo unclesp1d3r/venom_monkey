@@ -50,6 +50,7 @@ impl Service {
         let agent = Agent {
             id,
             machine_id: input.machine_id,
+            host_name: input.host_name,
             created_at,
             last_seen_at: created_at,
             identity_public_key: input.identity_public_key.to_vec(),
