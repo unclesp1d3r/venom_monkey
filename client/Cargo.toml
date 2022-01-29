@@ -2,12 +2,13 @@
 name = "client"
 version = "0.1.0"
 edition = "2018"
+description = "A distributed multiplatform beacon to emulate threat actor capabilities"
 
 
 [dependencies]
 common = { path = "../common" }
 
-clap = "2.33"
+clap = { version = "3.0", features = ["derive", "cargo", "env", "wrap_help"] }
 anyhow = "1.0"
 thiserror = "1.0"
 base64 = "0.13"
@@ -17,7 +18,7 @@ reqwest = { version = "0.11", default-features = false, features = [
     "blocking",
 ] }
 uuid = { version = "0.8", features = ["serde", "v4"] }
-prettytable-rs = "0.8"
+comfy-table = "5.0"
 ed25519-dalek = "1"
 rand = "0.7"
 x25519-dalek = "1"
