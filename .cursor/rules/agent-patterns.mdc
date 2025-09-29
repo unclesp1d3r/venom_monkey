@@ -1,0 +1,46 @@
+---
+globs: agent/**/*.rs
+description: Agent-specific patterns and conventions
+---
+
+# Agent Component Patterns
+
+## Architecture
+
+The agent is a cross-platform daemon that beacons to the server and executes commands.
+
+## Key Patterns
+
+- **Daemonization**: Use `daemonize` crate on Unix systems
+- **Single Instance**: Use `single-instance` to prevent multiple agent instances
+- **Configuration**: Load config from environment variables
+- **HTTP Client**: Use `ureq` with timeout and custom user agent
+- **Platform Detection**: Use `cfg_iif!` for conditional compilation
+
+## File Structure
+
+- [main.rs](mdc:agent/src/main.rs) - Entry point with daemonization logic
+- [config.rs](mdc:agent/src/config.rs) - Configuration constants and settings
+- [init.rs](mdc:agent/src/init.rs) - Agent initialization and registration
+- [run.rs](mdc:agent/src/run.rs) - Main beacon loop
+- [install/](mdc:agent/src/install/) - Platform-specific installation logic
+
+## Platform Support
+
+- **Linux**: Uses `daemonize` for daemonization
+- **Windows**: Uses registry for persistence
+- **macOS**: Native daemon support
+
+## Security Features
+
+- Machine ID generation for unique agent identification
+- Hostname collection for agent identification
+- Cryptographic key generation and management
+- Secure communication with server
+
+## Dependencies
+
+- `machine-uid` for unique machine identification
+- `hostname` for system hostname
+- `single-instance` for process management
+- `daemonize` for Unix daemonization

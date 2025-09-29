@@ -1,0 +1,44 @@
+---
+globs: common/**/*.rs
+description: Common library patterns and shared utilities
+---
+
+# Common Library Patterns
+
+## Purpose
+
+The common library provides shared types and utilities across all components.
+
+## Key Modules
+
+- [lib.rs](mdc:common/src/lib.rs) - Library entry point
+- [api.rs](mdc:common/src/api.rs) - Shared API types and structures
+- [crypto.rs](mdc:common/src/crypto.rs) - Cryptographic utilities
+
+## Shared Types
+
+- API request/response structures
+- Cryptographic key types
+- Common error types
+- Serialization/deserialization helpers
+
+## Dependencies
+
+- `serde` for serialization
+- `uuid` for unique identifiers
+- `chrono` for timestamp handling
+
+## Usage Pattern
+
+All components depend on common:
+
+```toml
+common = { path = "../common" }
+```
+
+## Design Principles
+
+- Keep dependencies minimal
+- Focus on shared data structures
+- Avoid business logic in common
+- Use feature flags for optional functionality
