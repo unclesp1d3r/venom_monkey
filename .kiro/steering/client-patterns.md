@@ -1,0 +1,47 @@
+---
+inclusion: fileMatch
+fileMatchPattern: 
+    - 'client/**/*.rs'
+---
+
+# Client Component Patterns
+
+## Architecture
+
+The client is a CLI tool for managing agents and executing commands remotely.
+
+## CLI Structure
+
+- Uses `clap` with derive macros for argument parsing
+- Commands are organized in [cli/mod.rs](mdc:client/src/cli/mod.rs)
+- Each command has its own module in [cli/](mdc:client/src/cli/)
+
+## Command Organization
+
+- **Agents**: List and manage agents
+- **Exec**: Execute commands on remote agents
+- **Identity**: Generate and manage cryptographic identities
+
+## API Client
+
+- Uses `reqwest` with `rustls-tls` for secure HTTP communication
+- Follows the pattern in [api/mod.rs](mdc:client/src/api/mod.rs)
+- Each API endpoint has its own module in [api/](mdc:client/src/api/)
+
+## Configuration
+
+- Loads configuration from environment or config files
+- Uses `comfy-table` for formatted output
+- Supports both interactive and scripted usage
+
+## Error Handling
+
+- Uses `anyhow` for error propagation
+- Custom error types with `thiserror`
+- Graceful handling of network errors
+
+## Security
+
+- Cryptographic identity management
+- Secure communication with server
+- Command execution with proper authentication
