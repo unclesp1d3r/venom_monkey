@@ -1,7 +1,9 @@
 use crate::Error;
+use load_dotenv::load_dotenv;
 
+load_dotenv!();
 pub const SERVER_URL: &str = "http://localhost:8080";
-pub const IDENTITY_PRIVATE_KEY: &str = "hDhcDtDjnHErpdhKgiyFqaq260IPcBUxWc1MCG/tah4=";
+pub const IDENTITY_PRIVATE_KEY: &str = env!("CLIENT_IDENTITY_PRIVATE_KEY");
 
 #[derive(Debug)]
 pub struct Config {

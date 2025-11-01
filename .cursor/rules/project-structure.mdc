@@ -1,0 +1,36 @@
+---
+alwaysApply: true
+description: VenomMonkey project structure and workspace organization
+---
+
+# VenomMonkey Project Structure
+
+This is a Rust workspace containing a distributed multiplatform beacon system with three main components:
+
+## Workspace Structure
+
+- **agent/**: Cross-platform beacon agent that runs on target systems
+- **client/**: CLI client for managing agents and executing commands
+- **server/**: HTTP API server for agent management and job coordination
+- **common/**: Shared types and utilities across all components
+
+## Key Files
+
+- [Cargo.toml](mdc:Cargo.toml) - Workspace configuration with release optimizations
+- [Makefile](mdc:Makefile) - Build targets for all platforms (Linux, Windows, macOS)
+- [Cross.toml](mdc:Cross.toml) - Cross-compilation configuration for embedded targets
+- [Dockerfile](mdc:Dockerfile) - Container builds for different architectures
+
+## Build System
+
+- Uses `cargo` for local builds
+- Uses `cross` for cross-compilation to multiple targets
+- Uses `upx` for binary compression
+- Supports native, Linux x86_64, Windows x86_64, and macOS aarch64 targets
+
+## Architecture
+
+- **Agent**: Daemonized service that beacons to server
+- **Client**: CLI tool for agent management and command execution
+- **Server**: REST API with PostgreSQL database for agent/job management
+- **Common**: Shared cryptographic and API types

@@ -8,6 +8,7 @@ description = "A distributed multiplatform beacon to emulate threat actor capabi
 [dependencies]
 common = { path = "../common" }
 
+
 clap = { version = "^3.0", features = ["derive", "cargo", "env", "wrap_help"] }
 anyhow = "^1.0"
 thiserror = "^1.0"

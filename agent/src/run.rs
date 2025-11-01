@@ -25,7 +25,7 @@ pub fn run(api_client: &ureq::Agent, conf: config::Config) -> ! {
         let server_res = match api_client.get(get_job_route.as_str()).call() {
             Ok(res) => res,
             Err(err) => {
-                log::debug!("Error geeting job from server: {}", err);
+                log::debug!("Error getting job from server: {}", err);
                 sleep(sleep_for);
                 continue;
             }
